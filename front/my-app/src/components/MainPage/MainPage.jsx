@@ -25,6 +25,8 @@ const MainPage = () => {
   const currentHeroes = heroes.slice(firstheroIndex, heroesPerPage)
   const paginat = pageNumber => setPage(pageNumber)
 
+  if(status === 'loading') return <h1>Loading...</h1>
+  if(error) return <h1>An Error Occured:{error}</h1>
   return (
     <div>
       <div class="d-flex" role="search">
@@ -35,10 +37,8 @@ const MainPage = () => {
         <button class="btn btn-outline-success" type="submit" onClick={() => Setindicate(true)}>Search</button>
       </div>
 
-      {status === 'loading' && <h1>Loading...</h1>}
-      {error && <h1>An Error Occured:{error}</h1>}
-
-      {currentHeroes.length === 0 ? <h1>Superheroes not found</h1> :
+     
+      {currentHeroes.length === 0  ? <h1>Superheroes not found</h1> :
         <div>
           <div>
             <PostHerolist hero={currentHeroes} />
